@@ -1,0 +1,36 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CtaBanner from '../../components/CtaBanner.astro';
+
+type Post = { url: string; frontmatter: { title: string; description: string; category: string; readingTime: number; date: string } };
+const posts = Object.values(import.meta.glob<Post>('./*.md', { eager: true })).sort((a, b) =>
+  b.frontmatter.date.localeCompare(a.frontmatter.date),
+);
+---
+
+<BaseLayout title="Veli Köşesi" description="Veliler için ders çalışma, motivasyon, sınav kaygısı ve ergenlik üzerine pratik rehber yazılar.">
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">Veli Köşesi</span>
+      <h1>Veliler için pratik rehberler</h1>
+      <p>Evde hemen uygulayabileceğiniz, kısa ve anlaşılır yazılar.</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container grid grid-2">
+      {posts.map((p) => (
+        <a href={p.url} class="card card-link">
+          <span class="tag">{p.frontmatter.category}</span>
+          <h2 class="h3">{p.frontmatter.title}</h2>
+          <p class="muted">{p.frontmatter.description}</p>
+          <p class="card-meta">{p.frontmatter.readingTime} dk okuma</p>
+        </a>
+      ))}
+    </div>
+  </section>
+  <CtaBanner />
+</BaseLayout>
+
+<style>
+  .h3 { font-size: 1.3rem; margin-top: 12px; }
+</style>

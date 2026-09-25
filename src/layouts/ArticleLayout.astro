@@ -1,0 +1,36 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import CtaBanner from '../components/CtaBanner.astro';
+
+const { frontmatter } = Astro.props;
+---
+
+<BaseLayout title={frontmatter.title} description={frontmatter.description}>
+  <article>
+    <header class="page-hero">
+      <div class="container narrow">
+        <a href="/veli-kosesi" class="small">← Veli Köşesi</a>
+        <p class="meta"><span class="tag">{frontmatter.category}</span> <span class="small muted">{frontmatter.readingTime} dk okuma</span></p>
+        <h1>{frontmatter.title}</h1>
+        <p>{frontmatter.description}</p>
+      </div>
+    </header>
+    <div class="section">
+      <div class="container narrow prose">
+        <slot />
+        <aside class="card inline-cta">
+          <h2 class="h3">Çocuğunuza özel bir plan ister misiniz?</h2>
+          <p class="muted">30 dakikalık ücretsiz tanışma görüşmesinde durumu birlikte değerlendirelim.</p>
+          <a href="/randevu" class="btn btn-primary">Ücretsiz Görüşme Al</a>
+        </aside>
+      </div>
+    </div>
+  </article>
+  <CtaBanner />
+</BaseLayout>
+
+<style>
+  .meta { display: flex; gap: 12px; align-items: center; margin: 16px 0 8px; }
+  .inline-cta { margin-top: 48px; background: var(--c-primary-light); border-color: transparent; }
+  .h3 { font-size: 1.25rem; margin-top: 0 !important; }
+</style>

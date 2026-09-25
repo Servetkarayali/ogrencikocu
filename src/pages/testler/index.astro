@@ -1,0 +1,42 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CtaBanner from '../../components/CtaBanner.astro';
+import { quizzes } from '../../data/quizzes';
+---
+
+<BaseLayout title="Ücretsiz Testler" description="8-18 yaş öğrenciler için ücretsiz öğrenme tercihi, sınav kaygısı ve motivasyon testleri.">
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">Ücretsiz · Kayıt gerekmez</span>
+      <h1>Ücretsiz Testler</h1>
+      <p>
+        Her test yaklaşık 5 dakika sürer. Sonucunu hemen görürsün. Cevapların sadece tarayıcında işlenir, hiçbir yere
+        gönderilmez ve kaydedilmez.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="grid grid-3">
+        {quizzes.map((q) => (
+          <a href={`/testler/${q.slug}`} class="card card-link">
+            <div class="card-icon">{q.icon}</div>
+            <h3>{q.title}</h3>
+            <p class="muted">{q.short}</p>
+            <p class="card-meta">{q.questions.length} soru · {q.ageNote}</p>
+          </a>
+        ))}
+      </div>
+      <p class="small muted center tip">
+        Veliler için ipucu: Küçük yaştaki çocuklarla soruları birlikte okuyabilirsiniz. Cevabı çocuğun kendisi versin.
+      </p>
+    </div>
+  </section>
+
+  <CtaBanner />
+</BaseLayout>
+
+<style>
+  .tip { margin-top: 32px; }
+</style>

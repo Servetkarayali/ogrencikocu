@@ -1,0 +1,69 @@
+---
+import { site } from '../site.config';
+
+interface Props {
+  buttonLabel?: string;
+}
+const { buttonLabel = 'Rehberi Gönder' } = Astro.props;
+const active = Boolean(site.newsletterFormAction);
+---
+
+<!--
+  Brevo double opt-in formu. Brevo panelinde form oluşturulunca "action" adresi
+  site.config.ts > newsletterFormAction alanına yazılır. Alan adları (EMAIL, FIRSTNAME, OPT_IN)
+  Brevo'nun standart form alanlarıdır.
+-->
+<form
+  class="newsletter"
+  method="POST"
+  action={active ? site.newsletterFormAction : undefined}
+  data-active={active ? 'true' : 'false'}
+>
+  <div class="field">
+    <label for="nl-name">Adınız</label>
+    <input id="nl-name" type="text" name="FIRSTNAME" autocomplete="given-name" required />
+  </div>
+  <div class="field">
+    <label for="nl-email">E-posta adresiniz</label>
+    <input id="nl-email" type="email" name="EMAIL" autocomplete="email" required />
+  </div>
+
+  <label class="check">
+    <input type="checkbox" name="PARENT_CONFIRM" value="1" required />
+    <span>Veliyim veya 16 yaşından büyüğüm.</span>
+  </label>
+  <label class="check">
+    <input type="checkbox" name="OPT_IN" value="1" required />
+    <span>
+      Ücretsiz rehberi ve öğrenci koçluğu hakkında ara sıra e-posta almak istiyorum. Onayımı istediğim zaman her
+      e-postadaki linkle geri alabilirim. Ayrıntılar: <a href="/datenschutz" target="_blank">Gizlilik Politikası</a>.
+    </span>
+  </label>
+
+  <!-- Bot koruması: gerçek kullanıcılar bu alanı görmez -->
+  <input type="text" name="email_address_check" value="" tabindex="-1" autocomplete="off" class="hp" aria-hidden="true" />
+  <input type="hidden" name="locale" value="tr" />
+
+  <button type="submit" class="btn btn-primary btn-block">{buttonLabel}</button>
+  <p class="small muted note">
+    Kayıttan sonra size bir onay e-postası gelecek. Linke tıkladığınızda rehber gönderilir (double opt-in).
+  </p>
+  <p class="notice inactive-note" hidden={active}>
+    Form henüz aktif değil. E-posta servisi bağlandığında çalışmaya başlayacak.
+  </p>
+</form>
+
+<style>
+  .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+  .note { margin: 12px 0 0; }
+  .inactive-note { margin-top: 12px; }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLFormElement>('form.newsletter[data-active="false"]').forEach((form) => {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      form.querySelector<HTMLElement>('.inactive-note')?.removeAttribute('hidden');
+    });
+  });
+</script>

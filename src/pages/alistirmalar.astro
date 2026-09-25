@@ -1,0 +1,89 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CtaBanner from '../components/CtaBanner.astro';
+
+const groups = [
+  {
+    age: '8-12 yaş',
+    items: [
+      {
+        icon: '⏱️',
+        title: '15 Dakika Odak Oyunu',
+        text: 'Kum saati ya da zamanlayıcı kur. 15 dakika boyunca tek bir işe odaklan, bitince kendine bir yıldız ver. 5 yıldız = küçük bir ödül.',
+      },
+      {
+        icon: '🎒',
+        title: 'Akşam Çanta Kontrolü',
+        text: 'Her akşam 5 dakika: yarınki dersler, ödevler, imzalanacak kâğıtlar. Listeyi çantanın yanına as.',
+      },
+      {
+        icon: '🗣️',
+        title: 'Öğretmen Ben Oyunu',
+        text: 'Bugün öğrendiğin bir konuyu annene, babana ya da oyuncağına 3 dakikada anlat. Anlatabildiysen öğrenmişsin demektir.',
+      },
+    ],
+  },
+  {
+    age: '13-18 yaş',
+    items: [
+      {
+        icon: '🍅',
+        title: 'Pomodoro Tekniği',
+        text: '25 dakika telefonsuz çalış, 5 dakika mola ver. 4 turdan sonra 20 dakikalık uzun mola. İlk hafta günde sadece 2 tur ile başla.',
+      },
+      {
+        icon: '🔁',
+        title: 'Aralıklı Tekrar',
+        text: 'Yeni öğrendiğin konuyu 1 gün, 3 gün ve 7 gün sonra kısa bir tekrar yap. Unutma eğrisini bu şekilde yenersin.',
+      },
+      {
+        icon: '❓',
+        title: 'Kendini Test Et',
+        text: 'Notlarını okumak yerine kapat ve konuyla ilgili 5 soru yaz, sonra cevapla. Hatırlamaya çalışmak, tekrar okumaktan çok daha etkilidir.',
+      },
+      {
+        icon: '📵',
+        title: 'Dijital Detoks Saati',
+        text: 'Ders saatinde telefonu başka bir odaya bırak. İlk günler zor gelir; 1 hafta sonra odaklanma süren belirgin şekilde uzar.',
+      },
+    ],
+  },
+];
+---
+
+<BaseLayout title="Alıştırmalar" description="Öğrenciler için evde hemen uygulanabilecek odaklanma, planlama ve verimli çalışma alıştırmaları.">
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">Ücretsiz Alıştırmalar</span>
+      <h1>Evde hemen uygulanabilecek alıştırmalar</h1>
+      <p>Her alıştırma 5-25 dakika sürer ve özel malzeme gerektirmez. Bir hafta boyunca aynı alıştırmayı denemek, farkı görmek için yeterli.</p>
+    </div>
+  </section>
+
+  {groups.map((g, i) => (
+    <section class:list={['section', { 'section-alt': i % 2 === 1 }]}>
+      <div class="container">
+        <h2>{g.age}</h2>
+        <div class="grid grid-3">
+          {g.items.map((it) => (
+            <div class="card">
+              <div class="card-icon">{it.icon}</div>
+              <h3>{it.title}</h3>
+              <p class="muted">{it.text}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <section class="section">
+    <div class="container narrow center">
+      <h2>Hazır haftalık plan şablonu ister misiniz?</h2>
+      <p class="muted">Ücretsiz rehberimizde çıktı alınabilir haftalık çalışma planı ve yaşa göre çalışma süreleri var.</p>
+      <a href="/ucretsiz-rehber" class="btn btn-primary">Ücretsiz Rehberi Al</a>
+    </div>
+  </section>
+
+  <CtaBanner />
+</BaseLayout>

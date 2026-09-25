@@ -1,0 +1,97 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../site.config';
+const l = site.legal;
+---
+
+<BaseLayout title="Gizlilik Politikası (Datenschutzerklärung)">
+  <section class="section">
+    <div class="container narrow prose">
+      <h1>Gizlilik Politikası</h1>
+      <p class="small muted">Datenschutzerklärung · Son güncelleme: [Tarih]</p>
+
+      <p class="notice">
+        Taslak metin: Yayına almadan önce bir Datenschutz üreticisi (ör. e-recht24.de, datenschutz-generator.de) veya bir
+        avukat tarafından kontrol edilmeli ve Almanca sürümü eklenmelidir.
+      </p>
+
+      <h2>1. Sorumlu kişi (Verantwortliche)</h2>
+      <p>
+        {l.fullName}, {l.street}, {l.city}, {l.country}<br />
+        E-posta: <a href={`mailto:${site.email}`}>{site.email}</a>
+      </p>
+
+      <h2>2. Özet</h2>
+      <ul>
+        <li>Bu site <strong>çerez (cookie) kullanmaz</strong> ve ziyaretçi takibi yapmaz.</li>
+        <li>Ücretsiz testlerdeki cevaplarınız <strong>sadece kendi tarayıcınızda</strong> işlenir; hiçbir sunucuya gönderilmez ve kaydedilmez.</li>
+        <li>Yazı tipleri ve tüm dosyalar kendi sunucumuzdan yüklenir; Google Fonts gibi üçüncü taraf hizmetler kullanılmaz.</li>
+        <li>Kişisel veriler yalnızca e-posta listesine kaydolduğunuzda, randevu aldığınızda veya bize yazdığınızda işlenir.</li>
+      </ul>
+
+      <h2>3. Barındırma (Hosting): Cloudflare</h2>
+      <p>
+        Site, Cloudflare, Inc. (101 Townsend St, San Francisco, CA 94107, ABD) altyapısında barındırılır. Siteyi
+        ziyaret ettiğinizde sunucu, teknik olarak gerekli bilgileri (IP adresi, tarih/saat, istenen sayfa, tarayıcı
+        bilgisi) güvenlik ve sitenin çalışması amacıyla kısa süreli olarak işler. Hukuki dayanak: Art. 6 Abs. 1 lit. f
+        DSGVO (sitenin güvenli ve kararlı çalışmasına yönelik meşru menfaat). Cloudflare, AB-ABD Veri Gizliliği
+        Çerçevesi (EU-U.S. Data Privacy Framework) kapsamında sertifikalıdır. Cloudflare ile bir veri işleme sözleşmesi
+        (AVV) yapılmıştır.
+      </p>
+
+      <h2>4. E-posta listesi ve ücretsiz rehber: Brevo</h2>
+      <p>
+        Ücretsiz rehberi almak için adınızı ve e-posta adresinizi girerseniz, bu veriler rehberin gönderilmesi ve ara
+        sıra öğrenci koçluğu hakkında bilgilendirme e-postaları gönderilmesi için işlenir. Hukuki dayanak: onayınız
+        (Art. 6 Abs. 1 lit. a DSGVO).
+      </p>
+      <p>
+        <strong>Double opt-in:</strong> Kaydınızdan sonra bir onay e-postası alırsınız. Kaydınız ancak bu e-postadaki
+        linke tıkladığınızda tamamlanır. Onayın ispatı için kayıt ve onay zamanı ile IP adresi saklanır.
+      </p>
+      <p>
+        E-postalar Sendinblue GmbH (Brevo), Köpenicker Straße 126, 10179 Berlin, Almanya üzerinden gönderilir. Veriler
+        AB içindeki sunucularda saklanır. Brevo ile bir veri işleme sözleşmesi (AVV) yapılmıştır.
+      </p>
+      <p>
+        <strong>Onayın geri alınması:</strong> Her e-postanın altındaki linkle veya bize yazarak onayınızı istediğiniz
+        zaman geri alabilirsiniz. Verileriniz bunun ardından silinir.
+      </p>
+      <p>
+        <strong>Çocuklar:</strong> Form velilere ve 16 yaşından büyük kişilere yöneliktir (Art. 8 DSGVO). 16 yaşından
+        küçükler kayıt olmamalıdır.
+      </p>
+
+      <h2>5. Randevu: Cal.com</h2>
+      <p>
+        Ücretsiz görüşme için randevu, Cal.com, Inc. (ABD) tarafından sağlanan takvim üzerinden alınır. Randevu sayfası
+        ancak "Takvimi Aç" butonuna tıkladığınızda yeni sekmede açılır; bu siteye gömülü değildir. Randevu sırasında
+        girdiğiniz bilgiler (ad, e-posta, varsa not) görüşmenin planlanması için işlenir. Hukuki dayanak: Art. 6 Abs. 1
+        lit. b DSGVO (sözleşme öncesi talep). Cal.com ile bir veri işleme sözleşmesi (AVV) yapılmıştır. Ayrıntılar:
+        Cal.com gizlilik politikası.
+      </p>
+
+      <h2>6. E-posta ile iletişim</h2>
+      <p>
+        Bize e-posta ile yazdığınızda verdiğiniz bilgiler, talebinizin cevaplanması için işlenir (Art. 6 Abs. 1 lit. b
+        veya f DSGVO) ve talep sonuçlandıktan sonra yasal saklama süreleri dışında silinir.
+      </p>
+
+      <h2>7. Haklarınız</h2>
+      <p>DSGVO kapsamında aşağıdaki haklara sahipsiniz:</p>
+      <ul>
+        <li>Bilgi alma hakkı (Art. 15)</li>
+        <li>Düzeltme hakkı (Art. 16)</li>
+        <li>Silme hakkı (Art. 17)</li>
+        <li>İşlemeyi kısıtlama hakkı (Art. 18)</li>
+        <li>Veri taşınabilirliği hakkı (Art. 20)</li>
+        <li>İtiraz hakkı (Art. 21)</li>
+        <li>Onayı her zaman geri alma hakkı (Art. 7 Abs. 3)</li>
+      </ul>
+      <p>
+        Ayrıca bir veri koruma denetim makamına şikâyette bulunma hakkınız vardır (Art. 77 DSGVO). Yetkili makam:
+        [Eyaletin veri koruma makamı, ör. Landesbeauftragte für Datenschutz ...].
+      </p>
+    </div>
+  </section>
+</BaseLayout>

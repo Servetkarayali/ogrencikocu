@@ -1,0 +1,47 @@
+---
+import { site } from '../site.config';
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container cols">
+    <div>
+      <p class="brand">{site.name}</p>
+      <p class="small">{site.description}</p>
+    </div>
+    <div>
+      <p class="head">Ücretsiz Kaynaklar</p>
+      <a href="/testler">Testler</a>
+      <a href="/alistirmalar">Alıştırmalar</a>
+      <a href="/veli-kosesi">Veli Köşesi</a>
+      <a href="/ucretsiz-rehber">Ücretsiz Rehber (PDF)</a>
+    </div>
+    <div>
+      <p class="head">Koçluk</p>
+      <a href="/hakkimda">Hakkımda</a>
+      <a href="/hizmetler">Hizmetler</a>
+      <a href="/randevu">Ücretsiz Görüşme</a>
+      <a href="/iletisim">İletişim</a>
+    </div>
+    <div>
+      <p class="head">Yasal</p>
+      <a href="/impressum">Impressum</a>
+      <a href="/datenschutz">Gizlilik Politikası (Datenschutz)</a>
+    </div>
+  </div>
+  <div class="container bottom small">
+    © {year} {site.coachName} · Online öğrenci koçluğu · Almanya'dan tüm dünyaya
+  </div>
+</footer>
+
+<style>
+  .site-footer { background: var(--c-primary-dark); color: #d6e6e3; padding: 56px 0 24px; margin-top: 0; }
+  .cols { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 32px; }
+  .brand { font-weight: 800; font-size: 1.2rem; color: #fff; margin-bottom: 8px; }
+  .head { font-weight: 700; color: #fff; margin-bottom: 10px; }
+  .cols a { display: block; color: #d6e6e3; text-decoration: none; margin-bottom: 8px; font-size: 0.95rem; }
+  .cols a:hover { color: var(--c-sun); }
+  .bottom { border-top: 1px solid rgba(255, 255, 255, 0.15); margin-top: 36px; padding-top: 20px; color: #a9c4bf; }
+  @media (max-width: 800px) { .cols { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 480px) { .cols { grid-template-columns: 1fr; } }
+</style>

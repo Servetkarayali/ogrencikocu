@@ -1,0 +1,40 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../site.config';
+const wa = site.whatsapp.replace(/\D/g, '');
+---
+
+<BaseLayout title="İletişim" description="Öğrenci koçluğu hakkında sorularınız için iletişim bilgileri.">
+  <section class="page-hero">
+    <div class="container narrow">
+      <span class="eyebrow">İletişim</span>
+      <h1>Sorularınız mı var?</h1>
+      <p>En hızlı yol ücretsiz tanışma görüşmesi. Önce yazmak isterseniz e-posta ile ulaşabilirsiniz; genellikle 1-2 iş günü içinde dönüş yapıyorum.</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container narrow grid grid-2">
+      <div class="card">
+        <div class="card-icon">✉️</div>
+        <h2 class="h3">E-posta</h2>
+        <p><a href={`mailto:${site.email}`}>{site.email}</a></p>
+      </div>
+      {wa && (
+        <div class="card">
+          <div class="card-icon">💬</div>
+          <h2 class="h3">WhatsApp</h2>
+          <p><a href={`https://wa.me/${wa}`} target="_blank" rel="noopener">Mesaj gönder</a></p>
+        </div>
+      )}
+      <div class="card">
+        <div class="card-icon">📅</div>
+        <h2 class="h3">Ücretsiz görüşme</h2>
+        <p><a href="/randevu">30 dk randevu al →</a></p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .h3 { font-size: 1.2rem; }
+</style>

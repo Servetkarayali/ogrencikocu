@@ -1,0 +1,112 @@
+---
+import { site, nav } from '../site.config';
+
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWith(href));
+---
+
+<header class="site-header">
+  <div class="container bar">
+    <a href="/" class="logo" aria-label={`${site.name} ana sayfa`}>
+      <span class="logo-mark" aria-hidden="true">★</span>
+      <span>{site.name}</span>
+    </a>
+
+    <nav class="desktop-nav" aria-label="Ana menü">
+      {nav.slice(1).map((item) => (
+        <a href={item.href} class:list={{ active: isActive(item.href) }}>{item.label}</a>
+      ))}
+    </nav>
+
+    <a href="/randevu" class="btn btn-primary header-cta">Ücretsiz Görüşme</a>
+
+    <details class="mobile-nav">
+      <summary aria-label="Menüyü aç">☰</summary>
+      <nav aria-label="Mobil menü">
+        {nav.map((item) => (
+          <a href={item.href} class:list={{ active: isActive(item.href) }}>{item.label}</a>
+        ))}
+        <a href="/randevu" class="btn btn-primary btn-block">Ücretsiz 30 dk Görüşme</a>
+      </nav>
+    </details>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(255, 253, 249, 0.94);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--c-border);
+  }
+  .bar { display: flex; align-items: center; gap: 24px; min-height: 70px; }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 800;
+    font-size: 1.2rem;
+    color: var(--c-primary-dark);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .logo-mark {
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: var(--c-primary);
+    color: var(--c-sun);
+    font-size: 1.1rem;
+  }
+  .desktop-nav { display: flex; gap: 20px; margin-left: auto; }
+  .desktop-nav a {
+    text-decoration: none;
+    color: var(--c-text);
+    font-weight: 500;
+    font-size: 0.97rem;
+    padding: 6px 0;
+    border-bottom: 2px solid transparent;
+  }
+  .desktop-nav a:hover, .desktop-nav a.active { color: var(--c-primary); border-bottom-color: var(--c-accent); }
+  .header-cta { padding: 10px 20px; font-size: 0.95rem; }
+  .mobile-nav { display: none; }
+
+  @media (max-width: 1020px) {
+    .desktop-nav, .header-cta { display: none; }
+    .mobile-nav { display: block; margin-left: auto; }
+    .mobile-nav summary {
+      list-style: none;
+      cursor: pointer;
+      font-size: 1.6rem;
+      padding: 4px 10px;
+      border-radius: 8px;
+      color: var(--c-primary-dark);
+    }
+    .mobile-nav summary::-webkit-details-marker { display: none; }
+    .mobile-nav nav {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 70px;
+      background: var(--c-bg);
+      border-bottom: 1px solid var(--c-border);
+      padding: 12px 20px 20px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow);
+    }
+    .mobile-nav nav a:not(.btn) {
+      padding: 12px 4px;
+      text-decoration: none;
+      color: var(--c-text);
+      border-bottom: 1px solid var(--c-border);
+      font-weight: 500;
+    }
+    .mobile-nav nav a.active { color: var(--c-primary); }
+    .mobile-nav .btn { margin-top: 16px; }
+  }
+</style>

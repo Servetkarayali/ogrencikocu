@@ -1,0 +1,49 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import NewsletterForm from '../components/NewsletterForm.astro';
+---
+
+<BaseLayout
+  title="Ücretsiz Rehber: 7 Günde Düzenli Ders Çalışma Planı"
+  description="Veliler için ücretsiz PDF rehber: hazır haftalık plan şablonu ve 7 pratik adım."
+>
+  <section class="section landing">
+    <div class="container grid-land">
+      <div>
+        <span class="eyebrow">Ücretsiz PDF Rehber · Veliler için</span>
+        <h1>7 Günde Düzenli Ders Çalışma Planı</h1>
+        <p class="lead">
+          "Ders çalış" demekten yoruldunuz mu? Bu rehberle bir hafta içinde evde tartışmasız, düzenli bir çalışma rutini
+          kurun.
+        </p>
+        <h2 class="h3">Rehberin içinde:</h2>
+        <ul class="checks">
+          <li><strong>7 günlük adım adım plan:</strong> her gün tek bir küçük değişiklik</li>
+          <li><strong>Yaşa göre çalışma süreleri</strong> (8-18 yaş)</li>
+          <li><strong>Çıktı alınabilir haftalık plan şablonu</strong></li>
+          <li><strong>Veli cümleleri:</strong> tartışma yerine iş birliği kuran ifadeler</li>
+          <li><strong>Ekran süresi</strong> için basit kurallar</li>
+        </ul>
+      </div>
+      <div class="card form-card">
+        <h2 class="h3">Rehberi e-postanıza gönderelim</h2>
+        <NewsletterForm buttonLabel="Ücretsiz Rehberi Gönder" />
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .landing { background: linear-gradient(160deg, var(--c-primary-light) 0%, var(--c-bg) 70%); }
+  .grid-land { display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px; align-items: start; }
+  .lead { font-size: 1.2rem; color: var(--c-muted); }
+  .h3 { font-size: 1.25rem; }
+  .checks { list-style: none; padding: 0; }
+  .checks li { padding-left: 28px; position: relative; margin-bottom: 10px; }
+  .checks li::before { content: '✓'; position: absolute; left: 0; color: var(--c-accent); font-weight: 800; }
+  .form-card { position: sticky; top: 100px; }
+  @media (max-width: 880px) {
+    .grid-land { grid-template-columns: 1fr; }
+    .form-card { position: static; }
+  }
+</style>
