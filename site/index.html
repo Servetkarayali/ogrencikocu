@@ -5,36 +5,249 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ücretsiz Öğrenci Koçluğu Rehberi</title>
 <meta name="description" content="Veliler için ücretsiz rehber: öğrenci koçluğunun çocuğunuza kazandıracağı 7 beceri ve bu akşam evde uygulayabileceğiniz 5 adım.">
-<link rel="stylesheet" href="/style.css">
+<style>
+  :root{
+    --ink:#23303f; --muted:#5d6b7a; --teal:#1f7a6d; --teal-dark:#155a50;
+    --amber:#e8a33d; --soft:#eef6f4; --warm:#fdf4e6; --line:#d8e2e0; --white:#fff;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:"Noto Sans",system-ui,sans-serif;color:var(--ink);background:var(--white);line-height:1.6;font-size:17px}
+  h1,h2,h3{font-family:"Poppins",sans-serif;line-height:1.2;margin:0}
+  a{color:var(--teal)}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+  .btn{display:inline-block;background:var(--amber);color:#2b1d05;font-family:"Poppins";font-weight:600;text-decoration:none;padding:14px 28px;border-radius:999px;box-shadow:0 6px 18px rgba(232,163,61,.35);transition:transform .15s}
+  .btn:hover{transform:translateY(-2px)}
+  .eyebrow{display:inline-block;background:rgba(255,255,255,.15);color:#fff;font-family:"Poppins";font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:6px 14px;border-radius:999px;margin-bottom:18px}
+  section{padding:72px 0}
+  .section-title{font-size:clamp(26px,3.4vw,34px);margin-bottom:12px;text-align:center}
+  .section-lead{color:var(--muted);text-align:center;max-width:640px;margin:0 auto 40px}
+
+  /* HERO */
+  .hero{background:linear-gradient(150deg,var(--teal) 0%,var(--teal-dark) 100%);color:#fff;padding:64px 0 80px;position:relative;overflow:hidden}
+  .hero:before{content:"";position:absolute;right:-120px;bottom:-160px;width:460px;height:460px;border-radius:50%;background:rgba(255,255,255,.06)}
+  .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center;position:relative}
+  .hero h1{font-size:clamp(32px,5vw,50px);font-weight:700;margin-bottom:18px}
+  .hero p.lead{font-size:19px;opacity:.92;margin:0 0 28px;max-width:560px}
+  .hero-meta{display:flex;gap:22px;flex-wrap:wrap;margin-top:26px;font-size:15px;opacity:.9}
+  .hero-meta span:before{content:"✓ ";color:var(--amber);font-weight:700}
+  /* Book mockup */
+  .book{justify-self:center;width:260px;aspect-ratio:210/297;background:linear-gradient(160deg,#1f7a6d,#12493f);border-radius:6px 14px 14px 6px;box-shadow:-10px 0 0 #0e3c34 inset, 0 30px 60px rgba(0,0,0,.35);padding:28px 22px;position:relative;transform:rotate(-4deg)}
+  .book .tag{display:inline-block;background:var(--amber);color:#2b1d05;font-family:"Poppins";font-size:9px;font-weight:700;padding:4px 9px;border-radius:99px;letter-spacing:.05em}
+  .book h3{color:#fff;font-size:22px;margin-top:26px;font-weight:700}
+  .book .dot{position:absolute;right:26px;bottom:60px;width:44px;height:44px;border-radius:50%;background:var(--amber);opacity:.9}
+  .book .by{position:absolute;left:22px;bottom:20px;color:#fff;font-family:"Poppins";font-size:12px;font-weight:600}
+  .book .pages{position:absolute;right:-8px;top:10px;bottom:10px;width:10px;background:repeating-linear-gradient(#f4f4f4 0 2px,#ddd 2px 3px);border-radius:0 4px 4px 0}
+
+  /* PAIN */
+  .pain{background:var(--warm)}
+  .quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .quote{background:#fff;border-radius:16px;padding:22px;box-shadow:0 4px 14px rgba(35,48,63,.06);font-size:16px}
+  .quote b{display:block;font-family:"Poppins";font-size:28px;color:var(--amber);line-height:1}
+  .pain .note{text-align:center;max-width:680px;margin:36px auto 0;font-size:18px}
+
+  /* BENEFITS */
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(185px,1fr));gap:20px}
+  .card{background:var(--soft);border-radius:18px;padding:26px 22px;border:1px solid var(--line)}
+  .icon{width:48px;height:48px;border-radius:14px;background:var(--teal);display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+  .icon svg{width:26px;height:26px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  .card h3{font-size:17px;margin-bottom:6px}
+  .card p{margin:0;color:var(--muted);font-size:15px}
+
+  /* SKILLS */
+  .skills{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;max-width:820px;margin:0 auto}
+  .skill{background:#fff;border:2px solid var(--teal);color:var(--teal);font-family:"Poppins";font-weight:600;font-size:15px;padding:10px 18px;border-radius:999px}
+  .skill span{color:var(--amber);margin-right:6px}
+
+  /* ABOUT */
+  .about{background:var(--soft)}
+  .about-box{display:grid;grid-template-columns:160px 1fr;gap:36px;align-items:center;background:#fff;border-radius:24px;padding:36px;box-shadow:0 10px 30px rgba(35,48,63,.08);max-width:860px;margin:0 auto}
+  .avatar{width:160px;height:160px;border-radius:50%;background:linear-gradient(150deg,var(--teal),var(--teal-dark));color:#fff;font-family:"Poppins";font-size:52px;font-weight:700;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 8px var(--warm)}
+  .about h3{font-size:26px;margin-bottom:4px}
+  .about .role{color:var(--teal);font-weight:600;margin:0 0 12px}
+  .badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+  .badge{background:var(--warm);color:#6b4d00;font-size:13px;font-weight:600;padding:6px 12px;border-radius:99px}
+
+  /* FORM */
+  .signup{background:linear-gradient(150deg,var(--teal) 0%,var(--teal-dark) 100%);color:#fff}
+  .signup-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:40px;align-items:start}
+  .signup h2{font-size:clamp(26px,3.4vw,36px);margin-bottom:14px}
+  .steps{list-style:none;padding:0;margin:24px 0 0;counter-reset:s}
+  .steps li{position:relative;padding-left:48px;margin-bottom:18px}
+  .steps li:before{counter-increment:s;content:counter(s);position:absolute;left:0;top:0;width:32px;height:32px;border-radius:50%;background:var(--amber);color:#2b1d05;font-family:"Poppins";font-weight:700;display:flex;align-items:center;justify-content:center}
+  .form-box{background:#fff;border-radius:20px;padding:10px;box-shadow:0 20px 50px rgba(0,0,0,.25)}
+  .form-box iframe{display:block;width:100%;max-width:100%;height:720px;border:0}
+  .consent{font-size:13px;opacity:.85;margin-top:16px}
+  .consent a{color:#fff}
+
+  /* FAQ */
+  .faq{max-width:760px;margin:0 auto}
+  details{border-bottom:1px solid var(--line);padding:18px 0}
+  summary{font-family:"Poppins";font-weight:600;cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:16px}
+  summary::-webkit-details-marker{display:none}
+  summary:after{content:"+";color:var(--teal);font-size:22px;line-height:1}
+  details[open] summary:after{content:"–"}
+  details p{color:var(--muted);margin:10px 0 0}
+
+  footer{background:#17222d;color:#aab6c2;padding:28px 0;font-size:14px}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+  footer a{color:#aab6c2;margin-left:18px}
+
+  @media (max-width:820px){
+    .hero-grid,.signup-grid{grid-template-columns:1fr}
+    .book{width:200px;margin-top:10px}
+    .quotes{grid-template-columns:1fr}
+    .about-box{grid-template-columns:1fr;text-align:center;justify-items:center;padding:28px 22px}
+    .badges{justify-content:center}
+    section{padding:56px 0}
+  }
+</style>
 </head>
 <body>
-<main class="wrap">
-  <p class="eyebrow">Veliler için ücretsiz rehber</p>
-  <h1>Öğrenci Koçluğuyla Çocuklarınızın Kazanacakları</h1>
-  <p class="lead">Daha planlı, daha motive, daha özgüvenli bir öğrenci için: koçluğun çocuğunuza ve ailenize neler kazandırabileceğini bu rehberde bulacaksınız.</p>
 
-  <h2>Rehberde neler var?</h2>
-  <ul class="benefits">
-    <li>Öğrenci koçluğunun ne olduğu ve ne olmadığı</li>
-    <li>Koçluğun çocuğunuza kazandırabileceği 7 temel beceri</li>
-    <li>Yurt dışında yaşayan Türk aileler için özel notlar</li>
-    <li>Bu akşam evde uygulayabileceğiniz 5 basit adım</li>
-    <li>Çocuğunuzun koçluğa ihtiyacı olup olmadığını anlamak için kısa bir kontrol listesi</li>
-  </ul>
-  <p class="author">Hazırlayan: <strong>Sevil Berk</strong> · 15 yıllık deneyime sahip öğretmen, sertifikalı öğrenci koçu</p>
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">Veliler için ücretsiz rehber</span>
+      <h1>Öğrenci Koçluğuyla Çocuklarınızın Kazanacakları</h1>
+      <p class="lead">Daha planlı, daha motive, daha özgüvenli bir öğrenci için: Koçluğun çocuğunuza ve ailenize neler kazandırabileceğini bu ücretsiz PDF rehberde bulacaksınız.</p>
+      <a class="btn" href="#kayit">Rehberi ücretsiz alın</a>
+      <div class="hero-meta"><span>9 sayfa, tamamen Türkçe</span><span>E-postanıza anında</span><span>Tamamen ücretsiz</span></div>
+    </div>
+    <div class="book" aria-hidden="true">
+      <span class="tag">ÜCRETSİZ REHBER</span>
+      <h3>Öğrenci Koçluğuyla Çocuklarınızın Kazanacakları</h3>
+      <div class="dot"></div>
+      <div class="by">Sevil Berk</div>
+      <div class="pages"></div>
+    </div>
+  </div>
+</header>
 
-  <section class="card" id="kayit">
-    <h2>Rehberi e-postana gönderelim</h2>
-    <!-- BREVO FORMU: Brevo > Formulare > Teilen > Einbetten > HTML-Code
-         kodunu bu yorumun altına, placeholder div'in yerine yapıştır. -->
-    <div class="placeholder">Brevo form kodu henüz eklenmedi.</div>
-    <p class="consent">Kayıt olduktan sonra onay e-postası alacaksın. Bağlantıya tıklamadan kayıt tamamlanmaz. Aboneliğini istediğin zaman iptal edebilirsin. Ayrıntılar: <a href="/datenschutz.html">Datenschutz</a>.</p>
-  </section>
+<!-- PAIN -->
+<section class="pain">
+  <div class="wrap">
+    <h2 class="section-title">Bu cümleler size de tanıdık geliyor mu?</h2>
+    <p class="section-lead">Pek çok evde ders zamanı, gerginlik zamanına dönüşüyor.</p>
+    <div class="quotes">
+      <div class="quote"><b>“</b>Ders çalış artık! – Çalıştım zaten!</div>
+      <div class="quote"><b>“</b>Masaya oturuyor ama saatler geçiyor, ortada iş yok.</div>
+      <div class="quote"><b>“</b>Aslında zeki ama potansiyelini kullanmıyor.</div>
+    </div>
+    <p class="note">Bu tablolar çoğu zaman tembellik değil; çocuğun <strong>nasıl çalışacağını ve kendini nasıl yöneteceğini</strong> henüz öğrenmemiş olmasının işaretidir. İyi haber şu: Bu beceriler öğrenilebilir.</p>
+  </div>
+</section>
 
-  <footer>
-    <a href="/impressum.html">Impressum</a>
-    <a href="/datenschutz.html">Datenschutz</a>
-  </footer>
-</main>
+<!-- BENEFITS -->
+<section>
+  <div class="wrap">
+    <h2 class="section-title">Rehberde neler var?</h2>
+    <p class="section-lead">Kısa, pratik ve hemen uygulanabilir. Uzun teoriler yok.</p>
+    <div class="cards">
+      <div class="card">
+        <div class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg></div>
+        <h3>Koçluk nedir, ne değildir?</h3>
+        <p>Özel dersten farkı ve koçluktan neler beklenebileceği.</p>
+      </div>
+      <div class="card">
+        <div class="icon"><svg viewBox="0 0 24 24"><path d="M12 2l3 6.5 7 .9-5.1 4.8 1.3 6.9L12 17.8 5.8 21l1.3-6.9L2 9.4l7-.9z"/></svg></div>
+        <h3>7 temel beceri</h3>
+        <p>Hedef koymaktan sınav kaygısına, çocuğunuzun kazanacakları.</p>
+      </div>
+      <div class="card">
+        <div class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 010 18M12 3a14 14 0 000 18"/></svg></div>
+        <h3>Gurbetteki aileler için</h3>
+        <p>İki dil, farklı okul sistemi: yurt dışında yaşayan Türk ailelere özel notlar.</p>
+      </div>
+      <div class="card">
+        <div class="icon"><svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7v9a1 1 0 01-1 1h-5v-6H9v6H4a1 1 0 01-1-1z"/></svg></div>
+        <h3>Evde 5 adım</h3>
+        <p>Bu akşam hemen başlayabileceğiniz basit ve etkili adımlar.</p>
+      </div>
+      <div class="card">
+        <div class="icon"><svg viewBox="0 0 24 24"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 01-2 2H6a2 2 0 01-2-2V5a2 2 0 012-2h9"/></svg></div>
+        <h3>Kısa kontrol listesi</h3>
+        <p>Çocuğunuzun koçluktan fayda görüp görmeyeceğini 2 dakikada anlayın.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <h2 class="section-title">Çocuğunuzun kazanacağı 7 beceri</h2>
+    <p class="section-lead">Koçluğun asıl hedefi tek bir sınav değil, kendi öğrenmesini yönetebilen bir çocuktur.</p>
+    <div class="skills">
+      <div class="skill"><span>1</span>Kendi hedefini koymak</div>
+      <div class="skill"><span>2</span>Planlama ve zaman yönetimi</div>
+      <div class="skill"><span>3</span>Verimli çalışma teknikleri</div>
+      <div class="skill"><span>4</span>Motivasyon ve öz disiplin</div>
+      <div class="skill"><span>5</span>Sınav kaygısıyla başa çıkmak</div>
+      <div class="skill"><span>6</span>Özgüven ve sorumluluk</div>
+      <div class="skill"><span>7</span>Evde daha huzurlu iletişim</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about">
+  <div class="wrap">
+    <div class="about-box">
+      <div class="avatar" aria-hidden="true">SB</div>
+      <div>
+        <h3>Sevil Berk</h3>
+        <p class="role">Öğretmen · Sertifikalı Öğrenci Koçu</p>
+        <p>Öğretmenlik yıllarım boyunca şunu defalarca gördüm: Başarısız görünen çocukların çoğu aslında yeteneksiz değil, sadece nasıl öğreneceğini henüz keşfetmemiş çocuklardı. Bugün dünyanın farklı ülkelerinde yaşayan Türk ailelerin çocuklarıyla online olarak çalışıyorum.</p>
+        <div class="badges">
+          <span class="badge">15 yıllık öğretmenlik deneyimi</span>
+          <span class="badge">Wisefull sertifikalı koç</span>
+          <span class="badge">Online, her ülkeden</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SIGNUP -->
+<section class="signup" id="kayit">
+  <div class="wrap signup-grid">
+    <div>
+      <h2>Rehberi e-postanıza gönderelim</h2>
+      <p>Adınızı ve e-posta adresinizi yazın, rehber birkaç dakika içinde e-postanızda olsun.</p>
+      <ol class="steps">
+        <li>Formu doldurun.</li>
+        <li>E-postanıza gelen onay bağlantısına tıklayın.</li>
+        <li>Rehberiniz hemen ardından e-postanıza gelir.</li>
+      </ol>
+      <p class="consent">Onay bağlantısına tıklamadan kaydınız tamamlanmaz. Aboneliğinizi istediğiniz zaman iptal edebilirsiniz. Ayrıntılar: <a href="/datenschutz.html">Datenschutz</a>.</p>
+    </div>
+    <div class="form-box">
+      <iframe src="https://342b761f.sibforms.com/serve/MUIFAHdwtEXOB8d17cG1d_DMwDVOC26cw7t8YJZGnlSvCdL3HEghRxskFzFIiMv1IfHa2XJ7tpOuzSrSm2hLM4UFdqH38QUVzMIAyPgdEeqxLGVpzoKJHw9v8kdB-b2wVXiUPQRezKXSPNtlYN1n-8hVOZiA5HU6MUdkn9uULZSYdGCIztl6TrnTgbmuK1mfrEUYbH2UV-kplOJa3w==" title="Ücretsiz rehber kayıt formu" scrolling="auto" allowfullscreen loading="lazy"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section>
+  <div class="wrap">
+    <h2 class="section-title">Sık sorulan sorular</h2>
+    <div class="faq">
+      <details><summary>Rehber gerçekten ücretsiz mi?</summary><p>Evet. Rehber için hiçbir ücret ödemezsiniz. Sadece e-posta adresinizle kaydolmanız yeterli.</p></details>
+      <details><summary>Rehber hangi yaştaki çocuklar için?</summary><p>Rehberdeki beceriler ve adımlar ilkokuldan liseye kadar her yaştaki öğrenci için uyarlanabilir.</p></details>
+      <details><summary>Onay e-postası gelmedi, ne yapmalıyım?</summary><p>Birkaç dakika bekleyin ve spam/gereksiz klasörünüzü kontrol edin. Hâlâ gelmediyse formu tekrar doldurabilirsiniz.</p></details>
+      <details><summary>Abonelikten nasıl çıkarım?</summary><p>Her e-postanın altındaki "abonelikten çıkabilirsiniz" bağlantısına tek tıklamanız yeterli.</p></details>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© Sevil Berk · Öğrenci Koçluğu</span>
+    <span><a href="/impressum.html">Impressum</a><a href="/datenschutz.html">Datenschutz</a></span>
+  </div>
+</footer>
+
 </body>
 </html>
