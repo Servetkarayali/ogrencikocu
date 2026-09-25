@@ -13,7 +13,7 @@ export const site = {
   whatsapp: '',
 
   // Cal.com'daki 30 dakikalık ücretsiz tanışma etkinliğinin linki.
-  bookingUrl: 'https://cal.com/[kullanici-adi]/tanisma-30dk',
+  bookingUrl: 'https://cal.com/servetk/tanisma',
 
   // Brevo'da oluşturulan double opt-in formunun "action" adresi.
   // Boş bırakılırsa form "yakında" uyarısı gösterir ve veri göndermez.
