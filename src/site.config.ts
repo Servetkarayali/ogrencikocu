@@ -3,7 +3,7 @@
 
 export const site = {
   name: 'Öğrenci Koçu',
-  coachName: '[Koç Adı Soyadı]',
+  coachName: 'Sevil Berk',
   tagline: 'Çocuğunuzun potansiyelini birlikte ortaya çıkaralım',
   description:
     '8-18 yaş öğrencilere dünyanın her yerinden online öğrenci koçluğu. Ücretsiz testler, alıştırmalar ve veli rehberleri.',

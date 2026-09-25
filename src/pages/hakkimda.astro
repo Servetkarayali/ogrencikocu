@@ -15,7 +15,7 @@ import { site } from '../site.config';
 
   <section class="section">
     <div class="container about">
-      <div class="photo" aria-label="Koç fotoğrafı yeri">Fotoğraf</div>
+      <img class="photo" src="/koc.svg" alt="Öğrenci koçu Sevil Berk" width="400" height="500" />
       <div class="prose">
         <h2>Hikâyem</h2>
         <p>[Koçun hikâyesi: eğitim hayatına nasıl başladı, neden öğrenci koçluğu yapıyor, Almanya'da yaşamak ve farklı ülkelerdeki öğrencilerle çalışmak ona ne kattı.]</p>
@@ -54,11 +54,7 @@ import { site } from '../site.config';
   .photo {
     aspect-ratio: 4 / 5;
     border-radius: 24px;
-    background: linear-gradient(135deg, var(--c-primary), #2f8a84);
-    display: grid;
-    place-items: center;
-    color: rgba(255, 255, 255, 0.75);
-    font-weight: 600;
+    width: 100%;
     position: sticky;
     top: 100px;
   }

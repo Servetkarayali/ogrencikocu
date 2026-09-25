@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" role="img" aria-label="Öğrenci koçu illüstrasyonu">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2f8a84"/>
+      <stop offset="1" stop-color="#1f5f5b"/>
+    </linearGradient>
+    <linearGradient id="scarf" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f08a63"/>
+      <stop offset="1" stop-color="#d9653e"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="500" rx="28" fill="url(#bg)"/>
+  <!-- Arka plan süsleri -->
+  <circle cx="330" cy="80" r="46" fill="#f6c34a" opacity=".9"/>
+  <circle cx="60" cy="120" r="18" fill="#fff" opacity=".12"/>
+  <circle cx="350" cy="300" r="10" fill="#fff" opacity=".18"/>
+  <path d="M40 60 l6 14 14 6 -14 6 -6 14 -6 -14 -14 -6 14 -6z" fill="#fff" opacity=".35"/>
+
+  <!-- Gövde / kıyafet -->
+  <path d="M60 500 C60 400 120 360 200 360 C280 360 340 400 340 500 Z" fill="#244b63"/>
+  <!-- Başörtüsü alt kısmı (omuzlara dökülen) -->
+  <path d="M110 300 C100 360 120 420 200 430 C280 420 300 360 290 300 C280 360 250 390 200 392 C150 390 120 360 110 300 Z" fill="url(#scarf)"/>
+  <!-- Başörtüsü -->
+  <path d="M200 110 C130 110 100 170 104 240 C108 310 150 372 200 376 C250 372 292 310 296 240 C300 170 270 110 200 110 Z" fill="url(#scarf)"/>
+  <!-- Yüz -->
+  <ellipse cx="200" cy="245" rx="66" ry="80" fill="#f1c7a3"/>
+  <!-- Başörtüsü alın bandı -->
+  <path d="M132 215 C140 170 170 150 200 150 C230 150 260 170 268 215 C250 190 228 180 200 180 C172 180 150 190 132 215 Z" fill="#c95c36"/>
+  <!-- Kaşlar -->
+  <path d="M160 222 q14 -9 28 -2" stroke="#6b4432" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <path d="M212 220 q14 -7 28 2" stroke="#6b4432" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <!-- Gözler (gülen) -->
+  <path d="M164 243 q10 -10 20 0" stroke="#3a2a22" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <path d="M216 243 q10 -10 20 0" stroke="#3a2a22" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <!-- Yanaklar -->
+  <ellipse cx="160" cy="272" rx="14" ry="8" fill="#e9967a" opacity=".55"/>
+  <ellipse cx="240" cy="272" rx="14" ry="8" fill="#e9967a" opacity=".55"/>
+  <!-- Burun -->
+  <path d="M200 250 q-6 18 2 22" stroke="#d9a07e" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <!-- Gülümseme -->
+  <path d="M174 290 q26 26 52 0" stroke="#a8433a" stroke-width="5" fill="#fff" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Kitap -->
+  <g transform="translate(250 400) rotate(-10)">
+    <rect x="0" y="0" width="84" height="60" rx="6" fill="#fffdf9"/>
+    <rect x="40" y="0" width="4" height="60" fill="#e4e1da"/>
+    <path d="M10 14 h24 M10 26 h24 M10 38 h18 M52 14 h24 M52 26 h24 M52 38 h18" stroke="#9fb3b0" stroke-width="3" stroke-linecap="round"/>
+  </g>
+</svg>

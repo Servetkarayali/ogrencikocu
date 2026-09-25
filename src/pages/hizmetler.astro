@@ -14,7 +14,7 @@ const packages = [
   },
   {
     name: '4 Haftalık Koçluk Programı',
-    price: '[Fiyat]',
+    price: 'Görüşmede belirlenir',
     duration: 'Haftada 1 görüşme · 45-60 dk',
     highlight: true,
     features: [
@@ -28,8 +28,8 @@ const packages = [
   },
   {
     name: 'Sınav Dönemi Programı',
-    price: '[Fiyat]',
-    duration: '[Süre]',
+    price: 'Görüşmede belirlenir',
+    duration: '4-8 hafta · sınav tarihine göre',
     highlight: false,
     features: [
       'Sınav takvimine göre geri sayım planı',
@@ -78,7 +78,7 @@ const topics = [
           </div>
         ))}
       </div>
-      <p class="small muted center note">Ücretli programlar ücretsiz tanışma görüşmesinden sonra birlikte planlanır.</p>
+      <p class="small muted center note">Program süresi ve ücreti, ücretsiz tanışma görüşmesinden sonra öğrencinin ihtiyacına göre birlikte belirlenir.</p>
     </div>
   </section>
 
@@ -107,7 +107,7 @@ const topics = [
   .package ul { list-style: none; padding: 0; margin: 16px 0 24px; flex: 1; }
   .package li { padding-left: 26px; position: relative; margin-bottom: 8px; }
   .package li::before { content: '✓'; position: absolute; left: 0; color: var(--c-accent); font-weight: 800; }
-  .price { font-size: 1.9rem; font-weight: 800; color: var(--c-primary-dark); margin: 0; }
+  .price { font-size: 1.4rem; font-weight: 800; color: var(--c-primary-dark); margin: 0; }
   .featured { border: 2px solid var(--c-accent); }
   .badge {
     position: absolute;
