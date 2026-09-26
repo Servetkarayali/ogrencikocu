@@ -1,0 +1,57 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../site.config';
+---
+
+<BaseLayout title="Ücretsiz 30 dk Görüşme" description="30 dakikalık ücretsiz, yükümlülüksüz online tanışma görüşmesi için randevu alın.">
+  <section class="page-hero">
+    <div class="container narrow">
+      <span class="eyebrow">Ücretsiz · 30 dakika · Online</span>
+      <h1>Ücretsiz tanışma görüşmesi</h1>
+      <p>Bu görüşmede öğrencinin durumunu dinliyor, sorularınızı cevaplıyor ve ilk önerilerimi paylaşıyorum. Sonrasında devam edip etmemek tamamen size kalmış.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container narrow">
+      <div class="grid grid-2">
+        <div class="card">
+          <h2 class="h3">Görüşmede neler konuşacağız?</h2>
+          <ul class="checks">
+            <li>Öğrencinin güçlü yönleri ve zorlandığı alanlar</li>
+            <li>Okul durumu ve hedefler</li>
+            <li>Evde hemen uygulanabilecek 2-3 öneri</li>
+            <li>Koçluğun size uygun olup olmadığı</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h2 class="h3">Nasıl hazırlanmalı?</h2>
+          <ul class="checks">
+            <li>Görüşmeye veli katılmalıdır; öğrenci de katılabilir</li>
+            <li>Sessiz bir ortam ve internet bağlantısı yeterli</li>
+            <li>İsterseniz önce <a href="/testler">ücretsiz testlerden</a> birini çözün</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card booking">
+        <h2>Size uygun saati seçin</h2>
+        <p class="muted">Takvim sizin saat diliminize göre otomatik gösterilir. Randevu sonrası görüşme linki e-postanıza gelir.</p>
+        <a href={site.bookingUrl} class="btn btn-primary" target="_blank" rel="noopener">Takvimi Aç ve Randevu Al →</a>
+        <p class="small muted privacy">
+          Randevu takvimi Cal.com tarafından sağlanır ve yeni sekmede açılır. Ayrıntılar için
+          <a href="/datenschutz">Gizlilik Politikası</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .h3 { font-size: 1.2rem; }
+  .checks { list-style: none; padding: 0; margin: 0; }
+  .checks li { padding-left: 26px; position: relative; margin-bottom: 8px; }
+  .checks li::before { content: '✓'; position: absolute; left: 0; color: var(--c-accent); font-weight: 800; }
+  .booking { margin-top: 28px; text-align: center; border-top: 5px solid var(--c-accent); padding: 40px 28px; }
+  .privacy { margin: 18px 0 0; }
+</style>

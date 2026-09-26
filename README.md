@@ -6,16 +6,22 @@ Hedef: Ziyaretçiyi **ücretsiz 30 dk tanışma görüşmesine** yönlendirmek; 
 
 ## Teknoloji
 
-- Statik HTML/CSS site (`site/`), derleme adımı yok
-- Yayın: Cloudflare Workers statik varlıklar (`wrangler.jsonc`, `site/` klasörünü yayınlar)
-- E-posta + PDF: Brevo double opt-in formu; rehber PDF'i `site/ogrenci-koclugu-rehberi.pdf`
-- Çerez ve takip yok
+- [Astro](https://astro.build) ile statik site (`src/`)
+- Yayın: Cloudflare Workers (`wrangler.jsonc`, `dist/` klasörünü yayınlar)
+- Randevu: Cal.com (link, sayfaya gömülü değil)
+- E-posta + PDF: Brevo double opt-in formu
+- Çerez ve takip yok; ücretsiz testler tamamen tarayıcıda çalışır
 
-## Sayfalar
+## Kişisel bilgiler
 
-- `site/index.html`: ücretsiz rehber açılış sayfası (Brevo form kodu buraya eklenecek)
-- `site/impressum.html`, `site/datenschutz.html`: yasal sayfalar
+Koçun adı, e-posta, randevu linki, Brevo form adresi ve Impressum bilgileri tek dosyada: `src/site.config.ts`.
+Köşeli parantezli `[ ... ]` metinler gerçek bilgilerle değiştirilecek.
 
-## Yayın
+## Komutlar
 
-`main` dalına her push'ta Cloudflare otomatik olarak `npx wrangler deploy` çalıştırır.
+```bash
+npm install
+npm run dev      # yerel geliştirme: http://localhost:4321
+npm run build    # dist/ klasörüne derler
+npm run deploy   # derler ve Cloudflare'e yükler
+```

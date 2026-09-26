@@ -1,7 +1,14 @@
 {
+  // Cloudflare Workers ayarları: Astro'nun ürettiği statik dosyaları (dist/) yayınlar.
+  "$schema": "node_modules/wrangler/config-schema.json",
   "name": "ogrencikocu",
-  "compatibility_date": "2026-09-01",
+  "compatibility_date": "2026-06-01",
+  "build": {
+    "command": "npm run build"
+  },
   "assets": {
-    "directory": "./site"
+    "directory": "./dist",
+    "not_found_handling": "404-page",
+    "html_handling": "auto-trailing-slash"
   }
 }

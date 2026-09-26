@@ -1,0 +1,223 @@
+---
+import type { Quiz } from '../data/quizzes';
+
+interface Props {
+  quiz: Quiz;
+}
+const { quiz } = Astro.props;
+---
+
+<div class="quiz" data-quiz={JSON.stringify(quiz)}>
+  <form class="quiz-form" novalidate>
+    <div class="progress" aria-hidden="true"><span class="progress-bar"></span></div>
+    <p class="small muted progress-text">0 / {quiz.questions.length} soru cevaplandı</p>
+
+    <ol class="questions">
+      {quiz.questions.map((q, i) => (
+        <li class="question card">
+          <fieldset>
+            <legend>
+              <span class="qnum">{i + 1}.</span> {q.text}
+            </legend>
+            {quiz.kind === 'choice' ? (
+              <div class="options">
+                {(q as any).options.map((o: { text: string }, j: number) => (
+                  <label class="option">
+                    <input type="radio" name={`q${i}`} value={j} />
+                    <span>{o.text}</span>
+                  </label>
+                ))}
+              </div>
+            ) : (
+              <div class="options scale">
+                {quiz.scaleLabels.map((label, j) => (
+                  <label class="option">
+                    <input type="radio" name={`q${i}`} value={j + 1} />
+                    <span>{label}</span>
+                  </label>
+                ))}
+              </div>
+            )}
+          </fieldset>
+        </li>
+      ))}
+    </ol>
+
+    <p class="notice missing" hidden>Lütfen tüm soruları cevapla. İşaretlenmemiş sorular kırmızı ile gösterildi.</p>
+    <button type="submit" class="btn btn-primary btn-block">Sonucumu Göster</button>
+  </form>
+
+  <section class="result" hidden aria-live="polite">
+    <div class="card result-card">
+      <span class="eyebrow">Sonucun</span>
+      <div class="result-body"></div>
+      <p class="small muted disclaimer">{quiz.disclaimer}</p>
+    </div>
+
+    <div class="card next">
+      <h3>Bu sonucu birlikte değerlendirelim</h3>
+      <p class="muted">
+        Test sadece bir başlangıç. 30 dakikalık ücretsiz görüşmede sonucu konuşup öğrenciye özel ilk adımları birlikte
+        belirleyebiliriz.
+      </p>
+      <div class="btn-row">
+        <a href="/randevu" class="btn btn-primary">Ücretsiz 30 dk Görüşme Al</a>
+        <a href="/testler" class="btn btn-secondary">Diğer Testler</a>
+      </div>
+    </div>
+    <button type="button" class="restart">↺ Testi yeniden çöz</button>
+  </section>
+</div>
+
+<style>
+  .progress { height: 8px; background: var(--c-border); border-radius: 999px; overflow: hidden; }
+  .progress-bar { display: block; height: 100%; width: 0; background: var(--c-accent); transition: width 0.25s; }
+  .progress-text { margin: 8px 0 24px; }
+  .questions { list-style: none; padding: 0; margin: 0 0 24px; display: grid; gap: 16px; }
+  .question { padding: 22px; }
+  .question.unanswered { border-color: #e05a47; box-shadow: 0 0 0 2px rgba(224, 90, 71, 0.2); }
+  fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
+  legend { font-weight: 600; font-size: 1.05rem; margin-bottom: 14px; padding: 0; }
+  .qnum { color: var(--c-accent-dark); }
+  .options { display: grid; gap: 8px; }
+  .options.scale { grid-template-columns: repeat(5, 1fr); }
+  .option {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    padding: 11px 14px;
+    border: 1.5px solid var(--c-border);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: border-color 0.12s, background 0.12s;
+  }
+  .option:hover { border-color: var(--c-primary); }
+  .option:has(input:checked) { border-color: var(--c-primary); background: var(--c-primary-light); }
+  .option input { accent-color: var(--c-primary); width: 18px; height: 18px; flex-shrink: 0; margin: 0; }
+  .scale .option { flex-direction: column; text-align: center; gap: 6px; font-size: 0.9rem; padding: 12px 6px; }
+  .missing { margin-bottom: 16px; }
+
+  .result { display: grid; gap: 20px; }
+  .result-card { border-top: 5px solid var(--c-accent); }
+  .next { background: var(--c-primary-light); border-color: transparent; }
+  .disclaimer { margin-top: 20px; border-top: 1px solid var(--c-border); padding-top: 16px; }
+  .restart { background: none; border: 0; color: var(--c-primary); cursor: pointer; font: inherit; justify-self: start; padding: 0; }
+
+  .result-body :global(.dim) { margin-bottom: 22px; }
+  .result-body :global(.level) {
+    display: inline-block;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+  }
+  .result-body :global(.tone-good) { background: #dff3e6; color: #1d6b3a; }
+  .result-body :global(.tone-mid) { background: #fff1cc; color: #8a5a00; }
+  .result-body :global(.tone-high) { background: #fde2dc; color: #a33a24; }
+  .result-body :global(.meter) { height: 10px; border-radius: 999px; background: var(--c-border); overflow: hidden; margin: 6px 0 14px; }
+  .result-body :global(.meter span) { display: block; height: 100%; background: var(--c-primary); }
+  .result-body :global(ul) { padding-left: 1.2em; }
+  .result-body :global(li) { margin-bottom: 6px; }
+
+  @media (max-width: 560px) {
+    .options.scale { grid-template-columns: 1fr; }
+    .scale .option { flex-direction: row; text-align: left; padding: 11px 14px; }
+  }
+</style>
+
+<script>
+  import type { Quiz } from '../data/quizzes';
+
+  const esc = (s: string) =>
+    s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]!);
+  const tipsList = (tips: string[]) => `<ul>${tips.map((t) => `<li>${esc(t)}</li>`).join('')}</ul>`;
+
+  document.querySelectorAll<HTMLElement>('.quiz').forEach((root) => {
+    const quiz: Quiz = JSON.parse(root.dataset.quiz!);
+    const form = root.querySelector<HTMLFormElement>('.quiz-form')!;
+    const result = root.querySelector<HTMLElement>('.result')!;
+    const body = root.querySelector<HTMLElement>('.result-body')!;
+    const bar = root.querySelector<HTMLElement>('.progress-bar')!;
+    const progressText = root.querySelector<HTMLElement>('.progress-text')!;
+    const missing = root.querySelector<HTMLElement>('.missing')!;
+    const items = [...root.querySelectorAll<HTMLElement>('.question')];
+    const total = quiz.questions.length;
+
+    const answers = () =>
+      quiz.questions.map((_, i) => form.querySelector<HTMLInputElement>(`input[name="q${i}"]:checked`)?.value ?? null);
+
+    form.addEventListener('change', (e) => {
+      const done = answers().filter((a) => a !== null).length;
+      bar.style.width = `${(done / total) * 100}%`;
+      progressText.textContent = `${done} / ${total} soru cevaplandı`;
+      (e.target as HTMLElement).closest('.question')?.classList.remove('unanswered');
+    });
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const a = answers();
+      const firstMissing = a.findIndex((x) => x === null);
+      if (firstMissing !== -1) {
+        a.forEach((x, i) => items[i].classList.toggle('unanswered', x === null));
+        missing.hidden = false;
+        items[firstMissing].scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+      missing.hidden = true;
+
+      if (quiz.kind === 'choice') {
+        const counts: Record<string, number> = {};
+        Object.keys(quiz.categories).forEach((k) => (counts[k] = 0));
+        a.forEach((x, i) => counts[quiz.questions[i].options[Number(x)].category]++);
+        const ranked = Object.entries(counts).sort((p, q) => q[1] - p[1]);
+        const top = quiz.categories[ranked[0][0]];
+        body.innerHTML =
+          `<h2>${esc(top.title)}</h2><p>${esc(top.text)}</p>` +
+          ranked
+            .map(([k, v]) => {
+              const pct = Math.round((v / total) * 100);
+              return `<div><strong>${esc(quiz.categories[k].title.replace(/ [^ ]+$/, ''))}</strong> – %${pct}<div class="meter"><span style="width:${pct}%"></span></div></div>`;
+            })
+            .join('') +
+          `<h3>Sana özel ipuçları</h3>${tipsList(top.tips)}`;
+      } else {
+        const sums: Record<string, number> = {};
+        const counts: Record<string, number> = {};
+        quiz.questions.forEach((q, i) => {
+          const v = Number(a[i]);
+          sums[q.dimension] = (sums[q.dimension] ?? 0) + (q.reverse ? 6 - v : v);
+          counts[q.dimension] = (counts[q.dimension] ?? 0) + 1;
+        });
+        body.innerHTML = Object.entries(quiz.dimensions)
+          .map(([k, dim]) => {
+            const score = sums[k];
+            const max = counts[k] * 5;
+            const min = counts[k];
+            const band = dim.bands.find((b) => score <= b.max) ?? dim.bands[dim.bands.length - 1];
+            const pct = Math.round(((score - min) / (max - min)) * 100);
+            return `<div class="dim"><h2>${esc(dim.title)}</h2>
+              <span class="level tone-${band.tone}">${esc(band.level)}</span>
+              <div class="meter"><span style="width:${pct}%"></span></div>
+              <p>${esc(band.text)}</p>
+              <h3>Öneriler</h3>${tipsList(band.tips)}</div>`;
+          })
+          .join('');
+      }
+
+      form.hidden = true;
+      result.hidden = false;
+      result.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    root.querySelector('.restart')!.addEventListener('click', () => {
+      form.reset();
+      items.forEach((it) => it.classList.remove('unanswered'));
+      bar.style.width = '0';
+      progressText.textContent = `0 / ${total} soru cevaplandı`;
+      result.hidden = true;
+      form.hidden = false;
+      form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+</script>

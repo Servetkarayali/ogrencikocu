@@ -1,0 +1,194 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CtaBanner from '../components/CtaBanner.astro';
+import NewsletterForm from '../components/NewsletterForm.astro';
+import { quizzes } from '../data/quizzes';
+---
+
+<BaseLayout>
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <span class="eyebrow">8-18 yaş · Online · Dünyanın her yerinden</span>
+        <h1>Ders çalışmak bir savaş olmak zorunda değil.</h1>
+        <p class="lead">
+          Motivasyon, planlama, sınav kaygısı ve verimli çalışma alışkanlıkları için öğrenciye özel online koçluk.
+          Çocuğunuz kendi yolunu bulsun, siz de evde huzuru geri kazanın.
+        </p>
+        <div class="btn-row">
+          <a href="/randevu" class="btn btn-primary">Ücretsiz 30 dk Görüşme Al</a>
+          <a href="/testler" class="btn btn-secondary">Ücretsiz Testleri Dene</a>
+        </div>
+        <p class="small muted trust">✓ Ücretsiz ve yükümlülüksüz &nbsp; ✓ Online, Türkçe &nbsp; ✓ Tüm saat dilimlerine uygun</p>
+      </div>
+      <div class="hero-card" aria-hidden="true">
+        <div class="bubble b1">📚 Haftalık plan hazır!</div>
+        <div class="bubble b2">🎯 Hedef: Matematik 85+</div>
+        <div class="bubble b3">😌 Sınav kaygısı azaldı</div>
+        <img class="coach" src="/koc.svg" alt="Öğrenci koçu Sevil Berk" width="400" height="500" />
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Tanıdık geliyor mu?</span>
+        <h2>Birçok veli aynı sorularla geliyor</h2>
+      </div>
+      <div class="grid grid-3">
+        <div class="card">
+          <div class="card-icon">😩</div>
+          <h3>"Masaya oturuyor ama çalışmıyor"</h3>
+          <p class="muted">Saatlerce kitap açık duruyor, verim yok. Dikkat dağınıklığı ve plansızlık çoğu zaman asıl sebeptir.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">😰</div>
+          <h3>"Biliyor ama sınavda donup kalıyor"</h3>
+          <p class="muted">Sınav kaygısı, bilgiyi olduğu gibi kâğıda dökmeyi engeller. Doğru tekniklerle yönetilebilir.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🙄</div>
+          <h3>"Söylediğim her şey tartışmaya dönüşüyor"</h3>
+          <p class="muted">Ergenlik döneminde veliden gelen tavsiye zor kabul edilir. Tarafsız bir koç köprü kurar.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Nasıl çalışıyoruz?</span>
+        <h2>3 adımda başlıyoruz</h2>
+      </div>
+      <div class="grid grid-3 steps">
+        <div class="card">
+          <span class="step">1</span>
+          <h3>Ücretsiz tanışma</h3>
+          <p class="muted">30 dakikalık online görüşmede öğrencinin durumunu ve hedeflerini konuşuyoruz.</p>
+        </div>
+        <div class="card">
+          <span class="step">2</span>
+          <h3>Kişisel yol haritası</h3>
+          <p class="muted">Öğrencinin yaşına, okul sistemine ve hedefine uygun bir plan hazırlıyorum.</p>
+        </div>
+        <div class="card">
+          <span class="step">3</span>
+          <h3>Düzenli koçluk</h3>
+          <p class="muted">Haftalık görüşmelerle ilerlemeyi takip ediyor, planı birlikte güncelliyoruz.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Ücretsiz · 5 dakika</span>
+        <h2>Önce kendinizi tanıyın</h2>
+        <p>Testler tarayıcınızda çalışır. Cevaplarınız hiçbir yere gönderilmez ve kaydedilmez.</p>
+      </div>
+      <div class="grid grid-3">
+        {quizzes.map((q) => (
+          <a href={`/testler/${q.slug}`} class="card card-link">
+            <div class="card-icon">{q.icon}</div>
+            <h3>{q.title}</h3>
+            <p class="muted">{q.short}</p>
+            <p class="card-meta">{q.questions.length} soru · {q.ageNote}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container lead-grid">
+      <div>
+        <span class="eyebrow">Ücretsiz Rehber</span>
+        <h2>Veliler İçin 7 Günde Düzenli Ders Çalışma Planı</h2>
+        <p>
+          Hazır haftalık plan şablonu ve evde hemen uygulayabileceğiniz 7 pratik adım. E-posta adresinizi bırakın,
+          rehber gelen kutunuza gelsin.
+        </p>
+        <ul class="checks">
+          <li>Yaşa göre günlük çalışma süreleri</li>
+          <li>Çıktı alınabilir haftalık plan şablonu</li>
+          <li>Tartışmasız "ders saati" için veli cümleleri</li>
+        </ul>
+      </div>
+      <div class="card">
+        <NewsletterForm />
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Veli yorumları</span>
+        <h2>Ailelerin deneyimleri</h2>
+      </div>
+      <div class="grid grid-3">
+        <blockquote class="card quote">
+          <p>"[Veli yorumu buraya gelecek. İzin alınmış gerçek yorumlar kullanılmalı.]"</p>
+          <footer class="small muted">— [Veli adı], [Şehir/Ülke]</footer>
+        </blockquote>
+        <blockquote class="card quote">
+          <p>"[Veli yorumu buraya gelecek.]"</p>
+          <footer class="small muted">— [Veli adı], [Şehir/Ülke]</footer>
+        </blockquote>
+        <blockquote class="card quote">
+          <p>"[Öğrenci yorumu buraya gelecek.]"</p>
+          <footer class="small muted">— [Öğrenci adı], [Yaş]</footer>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <CtaBanner />
+</BaseLayout>
+
+<style>
+  .hero { padding: 72px 0 80px; background: linear-gradient(160deg, var(--c-primary-light) 0%, var(--c-bg) 70%); }
+  .hero-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 48px; align-items: center; }
+  .lead { font-size: 1.2rem; color: var(--c-muted); max-width: 560px; margin-bottom: 28px; }
+  .trust { margin-top: 18px; }
+  .hero-card { position: relative; min-height: 380px; }
+  .coach { position: absolute; inset: 30px 40px 0 40px; width: calc(100% - 80px); height: calc(100% - 30px); object-fit: contain; }
+  .bubble {
+    position: absolute;
+    z-index: 2;
+    background: #fff;
+    padding: 10px 16px;
+    border-radius: 12px;
+    font-size: 0.92rem;
+    font-weight: 600;
+    box-shadow: var(--shadow);
+    white-space: nowrap;
+  }
+  .b1 { top: 10px; left: 0; }
+  .b2 { bottom: 0; right: 0; }
+  .b3 { bottom: 64px; left: 0; }
+  .step {
+    display: grid;
+    place-items: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: var(--c-accent);
+    color: #fff;
+    font-weight: 800;
+    margin-bottom: 14px;
+  }
+  .lead-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px; align-items: center; }
+  .checks { list-style: none; padding: 0; }
+  .checks li { padding-left: 28px; position: relative; margin-bottom: 8px; }
+  .checks li::before { content: '✓'; position: absolute; left: 0; color: var(--c-accent); font-weight: 800; }
+  .quote { margin: 0; }
+  .quote p { font-style: italic; }
+  @media (max-width: 880px) {
+    .hero-grid, .lead-grid { grid-template-columns: 1fr; }
+    .hero-card { min-height: 300px; }
+  }
+</style>

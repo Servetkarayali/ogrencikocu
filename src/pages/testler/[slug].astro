@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Quiz from '../../components/Quiz.astro';
+import { quizzes } from '../../data/quizzes';
+
+export function getStaticPaths() {
+  return quizzes.map((quiz) => ({ params: { slug: quiz.slug }, props: { quiz } }));
+}
+
+const { quiz } = Astro.props;
+---
+
+<BaseLayout title={quiz.title} description={quiz.short}>
+  <section class="page-hero">
+    <div class="container narrow">
+      <a href="/testler" class="small">← Tüm testler</a>
+      <h1>{quiz.icon} {quiz.title}</h1>
+      <p>{quiz.intro}</p>
+      <p class="small muted">{quiz.questions.length} soru · {quiz.ageNote} · Cevaplar kaydedilmez</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container narrow">
+      <Quiz quiz={quiz} />
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,127 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CtaBanner from '../components/CtaBanner.astro';
+
+// Online ödeme eklendiğinde her pakete bir ödeme linki (paymentUrl) verilebilir.
+const packages = [
+  {
+    name: 'Tanışma Görüşmesi',
+    price: 'Ücretsiz',
+    duration: '30 dakika',
+    highlight: false,
+    features: ['Öğrencinin durumunun değerlendirilmesi', 'Veli ile ön görüşme', 'İlk öneriler', 'Yükümlülük yok'],
+    cta: { href: '/randevu', label: 'Randevu Al' },
+  },
+  {
+    name: '4 Haftalık Koçluk Programı',
+    price: 'Görüşmede belirlenir',
+    duration: 'Haftada 1 görüşme · 45-60 dk',
+    highlight: true,
+    features: [
+      'Kişisel çalışma planı',
+      'Haftalık hedef takibi',
+      'Motivasyon ve verimli çalışma teknikleri',
+      'Aylık veli bilgilendirme görüşmesi',
+      'Görüşmeler arası mesajla destek',
+    ],
+    cta: { href: '/randevu', label: 'Önce Ücretsiz Tanışalım' },
+  },
+  {
+    name: 'Sınav Dönemi Programı',
+    price: 'Görüşmede belirlenir',
+    duration: '4-8 hafta · sınav tarihine göre',
+    highlight: false,
+    features: [
+      'Sınav takvimine göre geri sayım planı',
+      'Sınav kaygısı yönetimi',
+      'Deneme sınavı analizi',
+      'Son hafta stratejisi',
+    ],
+    cta: { href: '/randevu', label: 'Önce Ücretsiz Tanışalım' },
+  },
+];
+
+const topics = [
+  { icon: '🗓️', title: 'Planlama ve zaman yönetimi' },
+  { icon: '🔥', title: 'Motivasyon ve hedef belirleme' },
+  { icon: '📖', title: 'Verimli ders çalışma teknikleri' },
+  { icon: '😌', title: 'Sınav kaygısı yönetimi' },
+  { icon: '📱', title: 'Dikkat ve ekran süresi dengesi' },
+  { icon: '🧭', title: 'Okul ve kariyer yönü' },
+];
+---
+
+<BaseLayout title="Hizmetler" description="8-18 yaş öğrenciler için online koçluk programları.">
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">Hizmetler</span>
+      <h1>Öğrenciye özel online koçluk</h1>
+      <p>Tüm görüşmeler online (Zoom / Google Meet) ve Türkçe yapılır. Dünyanın her yerinden, kendi saat diliminize göre randevu alabilirsiniz.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="grid grid-3 packages">
+        {packages.map((p) => (
+          <div class:list={['card', 'package', { featured: p.highlight }]}>
+            {p.highlight && <span class="badge">En çok tercih edilen</span>}
+            <h3>{p.name}</h3>
+            <p class="price">{p.price}</p>
+            <p class="small muted">{p.duration}</p>
+            <ul>
+              {p.features.map((f) => <li>{f}</li>)}
+            </ul>
+            <a href={p.cta.href} class:list={['btn', 'btn-block', p.highlight ? 'btn-primary' : 'btn-secondary']}>
+              {p.cta.label}
+            </a>
+          </div>
+        ))}
+      </div>
+      <p class="small muted center note">Program süresi ve ücreti, ücretsiz tanışma görüşmesinden sonra öğrencinin ihtiyacına göre birlikte belirlenir.</p>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-head">
+        <h2>Birlikte çalıştığımız konular</h2>
+      </div>
+      <div class="grid grid-3">
+        {topics.map((t) => (
+          <div class="card topic">
+            <span class="card-icon">{t.icon}</span>
+            <h3>{t.title}</h3>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaBanner />
+</BaseLayout>
+
+<style>
+  .packages { align-items: stretch; }
+  .package { display: flex; flex-direction: column; position: relative; }
+  .package ul { list-style: none; padding: 0; margin: 16px 0 24px; flex: 1; }
+  .package li { padding-left: 26px; position: relative; margin-bottom: 8px; }
+  .package li::before { content: '✓'; position: absolute; left: 0; color: var(--c-accent); font-weight: 800; }
+  .price { font-size: 1.4rem; font-weight: 800; color: var(--c-primary-dark); margin: 0; }
+  .featured { border: 2px solid var(--c-accent); }
+  .badge {
+    position: absolute;
+    top: -13px;
+    left: 24px;
+    background: var(--c-accent);
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 999px;
+  }
+  .note { margin-top: 28px; }
+  .topic { display: flex; align-items: center; gap: 14px; }
+  .topic .card-icon { margin: 0; }
+  .topic h3 { margin: 0; font-size: 1.08rem; }
+</style>
