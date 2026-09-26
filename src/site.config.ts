@@ -8,7 +8,7 @@ export const site = {
   description:
     '8-18 yaş öğrencilere dünyanın her yerinden online öğrenci koçluğu. Ücretsiz testler, alıştırmalar ve veli rehberleri.',
 
-  email: '[iletisim@alanadi.de]',
+  email: 'servetkarayali@gmail.com',
   // Uluslararası formatta, boşluksuz. Boş bırakılırsa WhatsApp butonu gizlenir.
   whatsapp: '',
 
@@ -17,15 +17,16 @@ export const site = {
 
   // Brevo'da oluşturulan double opt-in formunun "action" adresi.
   // Boş bırakılırsa form "yakında" uyarısı gösterir ve veri göndermez.
-  newsletterFormAction: '',
+  newsletterFormAction:
+    'https://342b761f.sibforms.com/serve/MUIFAHdwtEXOB8d17cG1d_DMwDVOC26cw7t8YJZGnlSvCdL3HEghRxskFzFIiMv1IfHa2XJ7tpOuzSrSm2hLM4UFdqH38QUVzMIAyPgdEeqxLGVpzoKJHw9v8kdB-b2wVXiUPQRezKXSPNtlYN1n-8hVOZiA5HU6MUdkn9uULZSYdGCIztl6TrnTgbmuK1mfrEUYbH2UV-kplOJa3w==',
 
   // Impressum bilgileri (Almanya'da yasal zorunluluk)
   legal: {
-    fullName: '[Ad Soyad]',
-    street: '[Sokak ve No]',
-    city: '[Posta Kodu Şehir]',
+    fullName: 'Sevil Berk', // Uyarı: Impressum'da gerçek ad zorunlu
+    street: 'Magdeburger Ring 98',
+    city: '38518 Gifhorn',
     country: 'Deutschland',
-    phone: '[Telefon]',
+    phone: '', // İsteğe bağlı
     vatId: '', // Varsa USt-IdNr., yoksa boş kalır
   },
 };
